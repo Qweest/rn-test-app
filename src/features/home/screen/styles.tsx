@@ -21,5 +21,7 @@ export const ListWrapper = styled.View`
 `;
 
 export const FilterButton = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
   padding-left: ${metrics.spacing * 0.5}px;
 `;
