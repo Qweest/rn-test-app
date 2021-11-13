@@ -3,11 +3,6 @@ import styled from 'styled-components/native';
 import { metrics } from '../../styles';
 import Text from '../Text';
 
-export const ContentWrapper = styled.View`
-  height: 50%;
-  padding: ${metrics.spacing}px;
-`;
-
 export const Row = styled.View`
   flex-direction: row;
   align-items: center;
@@ -27,7 +22,7 @@ export const UrlText = styled(Text)`
 export const Title = styled(Text)`
   font-size: ${metrics.fontSize.large}px;
   font-family: ${metrics.fontFamily.workSansB};
-  margin-bottom: ${metrics.spacing}px;
+  margin: ${metrics.spacing}px 0;
 `;
 
 export const Label = styled(Text)`

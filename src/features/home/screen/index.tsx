@@ -1,4 +1,3 @@
-import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
 import debounce from 'lodash/debounce';
 import filter from 'lodash/filter';
@@ -14,12 +13,12 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {
   InfoScreen,
   Input,
+  Picker,
   RepositoryItem,
   RepositoryModal,
 } from '../../../components';
 import { useFavoritesContext } from '../../../contexts/favorites';
 import { useThemeContext } from '../../../contexts/theme';
-import { colors } from '../../../styles';
 import { RepositoryType } from '../../../types';
 import { GITHUB_REPO_URL } from '../constants';
 import { FilterButton, InputWrapper, ListWrapper, Wrapper } from './styles';
@@ -100,12 +99,6 @@ const Home = () => {
     );
   };
 
-  const renderPickerItems = useCallback(() => {
-    return map(languages, language => (
-      <Picker.Item key={language} label={language} value={language} />
-    ));
-  }, [languages]);
-
   useEffect(() => {
     setPage({ current: 0, next: 1 });
     setRepos([]);
@@ -173,22 +166,14 @@ const Home = () => {
           )) || <InfoScreen icon="globe" text="Try to search repositories" />}
       </ListWrapper>
       <RepositoryModal data={selectedRepo} onClose={toggleModal(undefined)} />
-      {openPicker && (
-        <Picker
-          selectedValue={selectedLanguage}
-          onValueChange={itemValue => {
-            setSelectedLanguage(itemValue);
-          }}
-          style={{
-            backgroundColor: colors.white,
-            width: '100%',
-            height: 200,
-          }}
-        >
-          <Picker.Item label="All" value="all" />
-          {renderPickerItems()}
-        </Picker>
-      )}
+      <Picker
+        isVisible={openPicker}
+        onClose={() => setOpenPicker(false)}
+        selectedValue={selectedLanguage}
+        onValueChange={language => setSelectedLanguage(language)}
+        data={map(languages, it => ({ label: it, value: it }))}
+        firstOption={{ label: 'All', value: 'all' }}
+      />
     </Wrapper>
   );
 };

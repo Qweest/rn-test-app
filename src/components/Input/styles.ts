@@ -8,6 +8,7 @@ export const Wrapper = styled.View`
   border-radius: 10px;
   flex-direction: row;
   align-items: center;
+  padding: ${metrics.spacing * 0.4}px 0;
 `;
 
 export const Icon = styled(Ionicons)`
@@ -23,6 +24,6 @@ export const TextInput = styled.TextInput`
   font-size: ${metrics.fontSize.regular}px;
   font-family: ${metrics.fontFamily.workSans};
   border-radius: 10px;
-  padding: ${metrics.spacing * 0.25}px ${metrics.spacing}px;
+  padding: 0 ${metrics.spacing}px;
   margin: 0;
 `;
